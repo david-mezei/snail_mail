@@ -36,3 +36,19 @@ error_message_invalid_username = "The username cannot start with a '.' character
 
 ok_message = "Valid email address :)"
 is_valid = True
+
+
+def email_validator():
+    global is_valid
+    while is_valid:
+        if number_of_at_characters == 0:
+            print(error_message_no_at)
+            is_valid = False
+        elif number_of_at_characters > 1:
+            print(error_message_too_many_at)
+            is_valid = False
+        if number_of_dot_characters == 0:
+            print(error_message_no_dot)
+            is_valid = False
+
+email_validator()
