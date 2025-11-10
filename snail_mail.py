@@ -67,7 +67,7 @@ def email_validator(email):
         is_valid = False
     
     # 6. At least one '.' in domain
-    if position_of_first_dot_after_the_at == 0:
+    if position_of_first_dot_after_the_at == -1:
         print(error_message_no_dot_in_domain)
         is_valid = False
 
@@ -87,9 +87,10 @@ def email_validator(email):
         is_valid = False
 
     # 10. Valid server name
-    if position_of_at + 1 == ".":
-        print(error_message_no_server_name)
-        is_valid = False
+    if position_of_at != -1 and position_of_at < length_of_email - 1:
+        if email[position_of_at + 1] == ".":
+            print(error_message_no_server_name)
+            is_valid = False
 
     # 11. Everything is in order :)
     if is_valid:
