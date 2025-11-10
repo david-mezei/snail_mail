@@ -57,5 +57,18 @@ def email_validator(email):
     if position_of_at == length_of_email - 1:
         print(error_message_no_domain)
 
+    # 5. At least one '.' character
+    if number_of_dot_characters == 0:
+        print(error_message_no_dot)
+    
+    # 6. At least one '.' in domain
+    if position_of_first_dot_after_the_at == 0:
+        print(error_message_no_dot_in_domain)
+
+    # 7. Top-level domain is not empty
+    if position_of_last_dot == length_of_email - 1:
+        print(error_message_no_tld)
+
+
 email_addr = input("Please enter an e-mail-address: ")
 email_validator(email_addr)
