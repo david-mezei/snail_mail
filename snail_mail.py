@@ -1,5 +1,3 @@
-email = input("Your email address: ")
-
 # "hello.worldcom"    => An email address has to contain a '@' character!
 # "he@llo@world.com"  => An email address cannot contain more than one '@' characters!
 # "@world.com"        => The username before the '@' character cannot be empty!
@@ -22,7 +20,10 @@ def email_validator(email):
 
     position_of_first_dot = email.find(".")
     position_of_last_dot = email.rfind(".")
-    position_of_first_dot_after_the_at = email.find(".", position_of_at)
+    position_of_first_dot_after_the_at = -1 # Initial value is -1, means not found
+    if position_of_at != -1:  # if '@' exists 
+        position_of_first_dot_after_the_at = email.find(".", position_of_at) # this looks for the first '.' after '@'
+        
 
 
     error_message_no_at = "An email address has to contain a '@' character!"
@@ -52,6 +53,9 @@ def email_validator(email):
     if position_of_at == 0:
         print(error_message_no_username)
 
-    
+    # 4. Domain cannot be empty
+    if position_of_at == length_of_email - 1:
+        print(error_message_no_domain)
 
-email_validator(email)
+email_addr = input("Please enter an e-mail-address: ")
+email_validator(email_addr)
