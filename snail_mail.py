@@ -44,31 +44,57 @@ def email_validator(email):
     # 1. At least one '@'
     if number_of_at_characters == 0:
         print(error_message_no_at)
+        is_valid = False
 
     # 2. Only one '@'
     if number_of_at_characters > 1:
         print(error_message_too_many_at)
+        is_valid = False
 
     # 3. Username is not empty
     if position_of_at == 0:
         print(error_message_no_username)
+        is_valid = False
 
     # 4. Domain cannot be empty
     if position_of_at == length_of_email - 1:
         print(error_message_no_domain)
+        is_valid = False
 
     # 5. At least one '.' character
     if number_of_dot_characters == 0:
         print(error_message_no_dot)
+        is_valid = False
     
     # 6. At least one '.' in domain
     if position_of_first_dot_after_the_at == 0:
         print(error_message_no_dot_in_domain)
+        is_valid = False
 
     # 7. Top-level domain is not empty
     if position_of_last_dot == length_of_email - 1:
         print(error_message_no_tld)
+        is_valid = False
 
+    # 8. TLD is at least two characters long
+    if (length_of_email - position_of_last_dot - 1) < 2:
+        print(error_message_short_tld)
+        is_valid = False
 
-email_addr = input("Please enter an e-mail-address: ")
-email_validator(email_addr)
+    # 9. Valid username
+    if email.startswith("."):
+        print(error_message_invalid_username)
+        is_valid = False
+
+    # 10. Valid server name
+    if position_of_at + 1 == ".":
+        print(error_message_no_server_name)
+        is_valid = False
+
+    # 11. Everything is in order :)
+    if is_valid:
+        print(ok_message)
+
+while True:
+    email_addr = input("Please enter an e-mail-address: ")
+    email_validator(email_addr)
