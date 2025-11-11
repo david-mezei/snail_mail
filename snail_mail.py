@@ -52,7 +52,7 @@ def email_validator(email):
         is_valid = False
 
     # 3. Username is not empty
-    if position_of_at == 0:
+    if position_of_at == -1:
         print(error_message_no_username)
         is_valid = False
 
@@ -87,7 +87,7 @@ def email_validator(email):
         is_valid = False
 
     # 10. Valid server name
-    if position_of_at != -1 and position_of_at < length_of_email - 1:
+    if position_of_at != -1 and position_of_at < length_of_email - 1: #TODO KIVENNI
         if email[position_of_at + 1] == ".":
             print(error_message_no_server_name)
             is_valid = False
